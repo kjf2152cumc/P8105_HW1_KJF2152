@@ -1,0 +1,75 @@
+---
+title: "P8105_HW1_KJF2152.Rmd"
+author: "Kaleb J. Frierson"
+date: "2024-09-14"
+output: 
+  github_document:
+    toc: true
+---
+
+# Library Calling
+
+```{r Libraries}
+library(ggplot2)
+
+
+```
+
+
+# Problem 1
+
+## Loading Data
+
+The "penguins" dataset is within the "palmerpenguins" package which I installed in the console. In the below chunk I load the dataset using the data function. 
+
+
+```{r Dataset}
+
+data("penguins", package = "palmerpenguins")
+
+```
+
+## Viewing Data
+
+In the next chunk I will use the heads function to view the top few rows and all of the columns, the nrow function to get a count of rows, the ncol function to get a count of columns, and the summary function to see sumary statistics for each of the variables. 
+
+```{r Viewing Data}
+
+head(penguins)
+nrow(penguins)
+ncol(penguins)
+summary(penguins)
+
+```
+## Describing Data
+
+The penguin dataset has 344 rows each representing an individual penguin. The 8 columns include the following variables: Species, Island, Bill Length in mm, Bill Depth in mm, Flipper Length in mm, Body Mass in g, Sex, and Year of recording. 
+
+The mean flipper length is 200.9 mm; however, the distribution of flipper length is multimodal. Thus, the Median (197.0) might be a better measure of central tendency. I determined this by graphing the variable with a histogram in the chunk below. 
+
+```{r Describing}
+
+ggplot(penguins, aes(x=flipper_length_mm))+ geom_histogram()
+
+```
+
+## Visualizing Data
+
+In the following chunk I create a scatterplot of flipper_length_mm (y) vs bill_length_mm (x) and color points by species.
+
+```{r Plotting}
+
+ggplot(penguins,aes(x=bill_length_mm, y=flipper_length_mm, color=species))+
+  geom_point()+
+  labs(x= "Penguin Bill Length (mm)", y= "Penguin Flipper Length (mm)")
+
+```
+## Saving Plot
+
+Using ggsave I tell R to save this plot as a png file within the figures folder of this project. 
+
+```{r Saving}
+ggsave("Figures/penguin_plot.png")
+
+```
+
