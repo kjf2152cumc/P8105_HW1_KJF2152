@@ -86,6 +86,36 @@ a character vector of length 10
 a factor vector of length 10, with 3 different factor “levels”
 Try to take the mean of each variable in your dataframe. What works and what doesn’t?
 
+## Making Data Frame
+
+Here I create a random sample of 10 from a normal distribution (rnorm) and call it dfsample:
+
+```{r sample}
+dfsample <- rnorm(10)
+```
+
+Here I create logical, character, and factor vectors. I asked for suggestions from ChatGPT which is where I got the idea for fruit in the character vector.
+
+```{r vectors}
+logical_vector <- dfsample > 0
+
+character_vector <- c("apple", "banana", "cherry", "date", "elderberry", 
+                      "fig", "grape", "honeydew", "kiwi", "lemon")
+
+factor_vector <- factor(c("Level1", "Level2", "Level3", "Level1", "Level2", 
+                          "Level3", "Level1", "Level2", "Level3", "Level1"))
+```
+
+Here I create a data frame using the sample and vectors that I made above: 
+
+```{r combine}
+df_hw <- data.frame(RandomSample = dfsample,
+                 GreaterThanZero = logical_vector,
+                 CharacterVector = character_vector,
+                 FactorVector = factor_vector)
+df_hw
+```
+
 Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
 
 In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
