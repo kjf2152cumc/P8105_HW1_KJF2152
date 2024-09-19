@@ -84,7 +84,6 @@ a random sample of size 10 from a standard Normal distribution
 a logical vector indicating whether elements of the sample are greater than 0
 a character vector of length 10
 a factor vector of length 10, with 3 different factor “levels”
-Try to take the mean of each variable in your dataframe. What works and what doesn’t?
 
 ## Making Data Frame
 
@@ -116,10 +115,47 @@ df_hw <- data.frame(RandomSample = dfsample,
 df_hw
 ```
 
-Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
+## Taking the Mean
+
+Try to take the mean of each variable in your dataframe. What works and what doesn’t?
+
+The mean of the random samples is -0.15. I obtained this by pulling the variable, calling it rs_mean, and then taking the mean of it. You could so this all in one line as mean(pull(df_hw, Random Sample)).I don't like how that looks.
+
+```{r rs_mean}
+rs_mean <- pull(df_hw, RandomSample)
+mean(rs_mean)
+```
+
+Interestingly the following code works to obtain the mean of the GreaterThanZero column which is simply either true or false indicating whether the value is greater than zero. I am unsure how to interpret such a mean. 
+
+```{r logic_mean}
+logic<- pull(df_hw, GreaterThanZero)
+mean(logic)
+```
+
+The following doesn't compute an average because you cannot get an average from a non-numeric vector. 
+
+```{r character_mean, message=FALSE}
+character<- pull(df_hw, CharacterVector)
+mean(character)
+```
+
+The following doesn't allow for me to obtain the mean of the factor vector. This makes sense too. 
+
+```{r factor_mean, message=FALSE}
+factor <- pull(df_hw, FactorVector)
+mean(factor)
+```
+
+## Converting Variables
 
 In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
 
+```{r, echo=TRUE, results='hide'}
+
+
+
+```
 
 
 
