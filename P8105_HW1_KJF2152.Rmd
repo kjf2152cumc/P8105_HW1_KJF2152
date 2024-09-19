@@ -135,14 +135,14 @@ mean(logic)
 
 The following doesn't compute an average because you cannot get an average from a non-numeric vector. 
 
-```{r character_mean, message=FALSE}
+```{r character_mean, warning=FALSE}
 character<- pull(df_hw, CharacterVector)
 mean(character)
 ```
 
 The following doesn't allow for me to obtain the mean of the factor vector. This makes sense too. 
 
-```{r factor_mean, message=FALSE}
+```{r factor_mean, warning=FALSE}
 factor <- pull(df_hw, FactorVector)
 mean(factor)
 ```
@@ -151,13 +151,18 @@ mean(factor)
 
 In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, message = FALSE, warning = FALSE, results='hide'}
 
-
+df_hw_mutated = 
+  df_hw |> 
+  mutate(GreaterThanZero = as.numeric(GreaterThanZero), 
+         CharacterVector = as.numeric(CharacterVector),
+         FactorVector = as.numeric(FactorVector),
+         )
 
 ```
 
-
+You are able to turn the logical and factor vectors into numbers. The character value became NA because there was no sensible way for R to turn it into a number. When I tried to take the mean of the logical vector, I got a value that didn't make sense to me because I didn't think it was a number at all. But, R has coded it as 0 or 1 True or False and maybe in that way I was able to get an average. 
 
 
 
